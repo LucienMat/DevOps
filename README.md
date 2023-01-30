@@ -16,6 +16,8 @@
  On peut ajouter `it` après le run pour lancer un terminal interactif de l'image. Quitter avec `exit`
 
  * `docker ps [-a]` : liste les containers lancés, en rajoutant `-a` on a la liste de tous ceux qu'on a déjà une fois
+ 
+ * `docker rm -f [container]` : force l'arrêt et supprime un container
 ---
 ## 1.2 Terminology
 
@@ -33,6 +35,23 @@
 ## 2.0 Webapps with Docker
 ## 2.1 Run a static website in a container
 [Dépot github du code](https://github.com/docker/labs/tree/master/beginner/static-site)
+
+Lancer un webserver dans un container docker :
+```
+docker run --name [static-site] -e AUTHOR="[Your Name]" -d -P dockersamples/static-site
+```
+`-d` créé un container détaché du terminal\
+`-P` publi les ports exposés sur l'hebergeur Docker\
+`-e` pour passer des variables d'environnement au container\
+`--name` nom du container
+`AUTHOR=""` nom de la variable d'environnement
+
+```
+$ docker port static-site
+443/tcp -> 0.0.0.0:49153
+80/tcp -> 0.0.0.0:49154
+```
+--> http://localhost:49154 amène vers le serveur web local
 
 
 
