@@ -53,6 +53,13 @@ $ docker port static-site
 ```
 --> http://localhost:49154 amène vers le serveur web local
 
+---
+## Docker images
+Build son container depuis le dossier contenant les fichiers du projet (surtout Dockerfile) :
+```
+docker build -t [YOUR_USERNAME]/[myfirstapp] .
+```
+Le username est celui sur Docker Cloud, et le `.` indique le dossier actuel dans lequel on se trouve
 
 
 
