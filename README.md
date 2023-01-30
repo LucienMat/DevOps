@@ -16,8 +16,11 @@
  On peut ajouter `it` après le run pour lancer un terminal interactif de l'image. Quitter avec `exit`
 
  * `docker ps [-a]` : liste les containers lancés, en rajoutant `-a` on a la liste de tous ceux qu'on a déjà une fois
+
+ * `docker rm [-f]` supprime les conteneurs par leur nom ou leur ID.La parmètre [-f] permet de forcer la suppression d'un conteneur en cours d'exécution (utilise SIGKILL)
  
- * `docker rm -f [container]` : force l'arrêt et supprime un container
+ * `docker inspect [image]` : avoir toutes les informations sur [image]
+
 ---
 ## 1.2 Terminology
 
@@ -60,6 +63,10 @@ Build son container depuis le dossier contenant les fichiers du projet (surtout 
 docker build -t [YOUR_USERNAME]/[myfirstapp] .
 ```
 Le username est celui sur Docker Cloud, et le `.` indique le dossier actuel dans lequel on se trouve
+
+# Que se passe-t-il lorsque vous exécutez la commande : docker run -d dockersamples/static-site ? 
+    * Après l'exécution de la commande `docker run -d dockersamples/static-site` le container dockersamples/static-site télécharger l'image dockersamples/static-site si elle n'existe pas en local et l'exécute en arrière plan, puis docker rend la main au terminal de l'host via la parmètre `-d`.
+
 
 
 
