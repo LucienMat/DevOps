@@ -1,8 +1,12 @@
-FROM openjdk:11
+# Run JUST Main.java
+# Install java 19 - Parce que j'ai la version java 19 sur mon
+# Se positinner dans le répertoire où se trouve Main.java
+# En ligne de commande faire: javac Main.java
+# Le fichier Main.class sera généré 
 
-COPY --from=0 /usr/src/Main.class .
-CMD [ "java -jar app.jar" ]
+FROM openjdk:19
 
-# COPY app.jar /home/tp/app.jar
-# CMD [ "java -jar app.jar" ]
-EXPOSE 8080
+COPY Main.class .
+COPY Main.java .
+
+CMD ["java", "Main"]
