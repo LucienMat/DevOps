@@ -13,7 +13,7 @@
 
 * `docker run [image] ls -l` : créé et run un container, download l'image si elle n'est pas déjà sur installée (tout ça fait par Le Docker Daemon ?). \
  `ls -l` pour voir la liste des éléments lancés, on peut mettre aussi `echo "text"` pour avoir un retour. \
- On peut ajouter `it` après le run pour lancer un terminal interactif. Quitter avec `exit`
+ On peut ajouter `it` après le run pour lancer un terminal interactif de l'image. Quitter avec `exit`
 
  * `docker ps [-a]` : liste les containers lancés, en rajoutant `-a` on a la liste de tous ceux qu'on a déjà une fois
 ---
@@ -36,5 +36,13 @@
 
 
 
+
+---
+## Membres du groupe
+    - Lucien MATHIEU
+    - Guth MOELLE
+    
+
+ 
 
 
