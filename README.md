@@ -62,7 +62,12 @@ Build son container depuis le dossier contenant les fichiers du projet (surtout 
 ```
 docker build -t [YOUR_USERNAME]/[myfirstapp] .
 ```
-Le username est celui sur Docker Cloud, et le `.` indique le dossier actuel dans lequel on se trouve
+Le username est celui sur Docker Cloud, et le `.` indique le dossier actuel dans lequel on se trouve\
+On peut ensuite run le container :
+```
+docker run -p 8888:5000 --name myfirstapp [YOUR_USERNAME]/[myfirstapp]
+```
+On peut aller voir le résultat avec http://localhost:8888, 8888 car c'est le port qu'on a indiqué dans la commande run
 
 # Que se passe-t-il lorsque vous exécutez la commande : docker run -d dockersamples/static-site ? 
     * Après l'exécution de la commande `docker run -d dockersamples/static-site` le container dockersamples/static-site télécharger l'image dockersamples/static-site si elle n'existe pas en local et l'exécute en arrière plan, puis docker rend la main au terminal de l'host via la parmètre `-d`.
