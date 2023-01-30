@@ -16,6 +16,8 @@
  On peut ajouter `it` après le run pour lancer un terminal interactif de l'image. Quitter avec `exit`
 
  * `docker ps [-a]` : liste les containers lancés, en rajoutant `-a` on a la liste de tous ceux qu'on a déjà une fois
+
+ * `docker rm [-f]` supprime les conteneurs par leur nom ou leur ID.La parmètre [-f] permet de forcer la suppression d'un conteneur en cours d'exécution (utilise SIGKILL)
 ---
 ## 1.2 Terminology
 
