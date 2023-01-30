@@ -8,7 +8,13 @@
 * `docker run [image] ls -l` : créé et run un container, download l'image si elle n'est pas déjà sur installée (tout ça fait par Le Docker Daemon ?). \
  `ls -l` pour voir la liste des éléments lancés, on peut mettre aussi `echo "text"` pour avoir un retour
 
-# Test
+* `docker run -it [image]` : lancer le container de [image] et accès au terminal de [image]
+
+
+## Membres du groupe
+    - Lucien MATHIEU
+    - Guth MOELLE
+    
 
  
 
