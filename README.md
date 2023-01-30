@@ -38,7 +38,7 @@
 
 
 # Que se passe-t-il lorsque vous exécutez la commande : docker run -d dockersamples/static-site ? 
-    * Après l'exécution de la commande `docker run -d dockersamples/static-site` le container dockersamples/static-site est exécuter en arrière plan et docker rend la main au terminal de l'host via la parmètre `-d`.
+    * Après l'exécution de la commande `docker run -d dockersamples/static-site` le container dockersamples/static-site télécharger l'image dockersamples/static-site si elle n'existe pas en local et l'exécute en arrière plan, puis docker rend la main au terminal de l'host via la parmètre `-d`.
 
 
 
