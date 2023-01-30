@@ -10,6 +10,12 @@
 
 * `docker run -it [image]` : lancer le container de [image] et accès au terminal de [image]
 
+* `docker inspect [image]` : avoir toutes les informations sur [image]
+
+
+# Que se passe-t-il lorsque vous exécutez la commande : docker run -d dockersamples/static-site ? 
+    * Après l'exécution de la commande `docker run -d dockersamples/static-site` le container dockersamples/static-site est exécuter en arrière plan et docker rend la main au terminal de l'host via la parmètre `-d`.
+
 
 ## Membres du groupe
     - Lucien MATHIEU
