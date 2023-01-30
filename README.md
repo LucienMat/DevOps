@@ -65,7 +65,7 @@ docker build -t [YOUR_USERNAME]/[myfirstapp] .
 Le username est celui sur Docker Cloud, et le `.` indique le dossier actuel dans lequel on se trouve\
 On peut ensuite run le container :
 ```
-docker run -p 8888:5000 --name myfirstapp [YOUR_USERNAME]/[myfirstapp]
+docker run -p 8888:5000 --name [myfirstapp] [YOUR_USERNAME]/[myfirstapp]
 ```
 On peut aller voir le résultat avec http://localhost:8888, 8888 car c'est le port qu'on a indiqué dans la commande run
 
