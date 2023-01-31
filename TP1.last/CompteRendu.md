@@ -77,6 +77,12 @@ Pour permettre de détruire le container sans pour autant supprimer les données
 ![View](./images/java/view_myapp-build.PNG)
 
 
+**Backend API**
+
+![View](./images/java/run_student-main.PNG)
+
+![View](./images/java/view_student-main.PNG)
+
 
 
 ---
