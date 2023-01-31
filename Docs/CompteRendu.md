@@ -70,6 +70,13 @@ Récupération du Spring Initializr, et ajout du fichier `GreetingController.jav
 ![ARboresence spring](./Arborescence.PNG)
 Il faut ensuite créer un nouveau Dockerfile situé dans le projet Spring qui va permettre de configurer et de build l'app java 
 
+Ensuite on build puis on run le container en se plaçant bien dans le fichier :\
+`docker build -t lucienmat/myapp .`\
+`docker run -p 8081:8080 --name myapp --network app-network lucienmat/myapp`
+
+On peut ensuite vérifier le bon fonctionnement avec l'addresse http://localhost:8081
+![Hello world](./helloWorld.PNG)
+
 ---
 **Tip** : En runnant le container avec -e pour indiquer les variables d'environnement (nom de la db, mdp ect...) on peut stocker ces variables de manière cryptées, pour ensuite les comparer avec celles reçues à leur tour cryptées.
 
