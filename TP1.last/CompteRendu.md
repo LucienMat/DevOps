@@ -38,7 +38,7 @@ On se connecte ensuite à la base de donnée en passant par adminer à l'address
 
 
 ## Load Database
-On va créer des tables et les remplir de données, pour ça on utilise des fichers sql qui seront dans le dossier `/docker-entrypoint-initdb.d` du container. En relançant le container la base de données va run ces fichiers et donc créer les tables.\
+On va créer des tables et les remplir de données automatiquement, pour ça on utilise des fichers sql qui seront dans le dossier dans le même répertoire que le Dockerfile, dans le Dockerfile on fera une copie de ces fichiers dans le répertoire `/docker-entrypoint-initdb.d` du container. pour exécuter ces scripts on fait: `docker build .`. En relançant le container de la bdd, la base de données va run ces fichiers et donc créer les tables.\
 Pour ajouter les fichiers on modifie Dockerfile :
 ```
 COPY CreateScheme.sql /docker-entrypoint-initdb.d
