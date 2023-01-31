@@ -74,8 +74,8 @@ On peut aller voir le résultat avec http://localhost:8888, 8888 car c'est le po
 
 
 # CI/CD
-**CI: Continute Integration**
-**CD: Continute Deploiement or Delevery**
+**CI: Continuous Integration**
+**CD: Continuous Deployement or Delivery**
 
 
 
