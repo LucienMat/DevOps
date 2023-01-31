@@ -63,9 +63,20 @@ Pour permettre de détruire le container sans pour autant supprimer les données
 
 **Main.java**
 
-![Build DockerFile](./documents/java/build_dockerFile_Main.PNG)
+![Build DockerFile](./images/java/build_main.PNG)
 
-![Run container](./documents/java/Run_Main.PNG)
+![Run container](./images/java/run_main.PNG)
+
+
+**Backend simple api**
+
+![Build DockerFile](./images/java/build_myapp-build.PNG)
+
+![Run container](./images/java/run_myapp-build.PNG)
+
+![View](./images/java/view_myapp-build.PNG)
+
+
 
 
 
