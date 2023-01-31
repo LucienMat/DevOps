@@ -36,7 +36,7 @@ On se connecte ensuite à la base de donnée en passant par adminer à l'address
 ![Auth](authAdminer.PNG)
 ![Connexion](connexionAdminer.PNG)
 
-
+---
 ## Load Database
 On va créer des tables et les remplir de données, pour ça on utilise des fichers sql qui seront dans le dossier `/docker-entrypoint-initdb.d` du container. En relançant le container la base de données va run ces fichiers et donc créer les tables.\
 Pour ajouter les fichiers on modifie Dockerfile :
@@ -51,6 +51,7 @@ On vérifie que la base de données est bien mise à jour :
 ![Données](donn%C3%A9es.PNG)
 On peut également visualiser les données en utilisant pgAdmin
 
+---
 ## Sauvegarder les données
 Pour permettre de détruire le container sans pour autant supprimer les données stockées dans la base de données, il faut rajouter un volume. Il va permettre de stocker les données sans être affectué par l'état du container.\
 Pour créer le volume, on va rajouter `-v /my/own/datadir:/var/lib/postgresql/data` dans la commande de run du container :
@@ -65,6 +66,7 @@ local     volume-postgres
 ```
 On peut retrouver notre volume avec le chemin : `\\wsl$\docker-desktop-data\data\docker\volumes\volume-postgres`
 
+---
 ## Spring Web
 Récupération du Spring Initializr, et ajout du fichier `GreetingController.java` dans le projet Spring : \
 ![ARboresence spring](./Arborescence.PNG)
@@ -74,15 +76,10 @@ Ensuite on build puis on run le container en se plaçant bien dans le fichier :\
 `docker build -t lucienmat/myapp .`\
 `docker run -p 8081:8080 --name myapp --network app-network lucienmat/myapp`
 
-On peut ensuite vérifier le bon fonctionnement avec l'addresse http://localhost:8081
+On peut ensuite vérifier le bon fonctionnement avec l'addresse http://localhost:8081 \
 ![Hello world](./helloWorld.PNG)
 
 ---
-**Tip** : En runnant le container avec -e pour indiquer les variables d'environnement (nom de la db, mdp ect...) on peut stocker ces variables de manière cryptées, pour ensuite les comparer avec celles reçues à leur tour cryptées.
-
----
-
-
 ## Backend API
 
 **Main.java**
@@ -103,7 +100,7 @@ On peut ensuite vérifier le bon fonctionnement avec l'addresse http://localhost
 
 ***Question***
 
-****1-2 La construction en plusieurs étages va nous permettre de séparer la partie import des dépendances du fichier pom, la génération du Jar et la partie exécution du Jar. L'étape Build du fichier DockerFile va impoter des dépendances et générée le Jar du projet et l'étape Run va allé chercher tous les fichiers Jar dans le répertoireCourant/target et exécuteé ce Jar.****
+1-2 La construction en plusieurs étages va nous permettre de séparer la partie import des dépendances du fichier pom, la génération du Jar et la partie exécution du Jar. L'étape Build du fichier DockerFile va impoter des dépendances et générée le Jar du projet et l'étape Run va allé chercher tous les fichiers Jar dans le répertoireCourant/target et exécuteé ce Jar.
 
 
 **Backend API**
@@ -113,8 +110,12 @@ On peut ensuite vérifier le bon fonctionnement avec l'addresse http://localhost
 ![View](./view_student-main.PNG)
 
 
+---
+**Tip** : En runnant le container avec -e pour indiquer les variables d'environnement (nom de la db, mdp ect...) on peut stocker ces variables de manière cryptées, pour ensuite les comparer avec celles reçues à leur tour cryptées.
+
 
 ---
+
 ## Membres du groupe
     - Lucien MATHIEU
     - Guth MOELLE
