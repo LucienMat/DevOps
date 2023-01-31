@@ -94,6 +94,11 @@ Il faut ensuite créer un nouveau Dockerfile situé dans le projet Spring qui va
 ![View](./view_myapp-build.PNG)
 
 
+***Question***
+
+****1-2 La construction en plusieurs étages va nous permettre de séparer la partie import des dépendances du fichier pom, la génération du Jar et la partie exécution du Jar. L'étape Build du fichier DockerFile va impoter des dépendances et générée le Jar du projet et l'étape Run va allé chercher tous les fichiers Jar dans le répertoireCourant/target et exécuteé ce Jar.****
+
+
 **Backend API**
 
 ![View](./run_student-main.PNG)
