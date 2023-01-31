@@ -29,6 +29,14 @@ On set up le container responsable des test dans le backend, intitulé `test-bac
 ```
 Pour avoir un exemple de configuration aller sur le projet Github, onglet `Actions`, et `New workflow`. On a un exemple de fichier main.yml configuré, avec la version de java, la distribution...
 
+Pour finir on indique la commande à run pour lancer les tests :
+```
+#finally build your app with the latest command
+      - name: Build and test with Maven
+        run:  mvn clean verify --file /simple-api/pom.xml
+```
+On retrouve `mvn clean verify` (cf. Notes), avec le chemin qui amène vers le fichier pom.xml qui contients les différents testcontainers
+
 
 ## Ajout des secrets dans Github
 
