@@ -73,6 +73,10 @@ On peut aller voir le résultat avec http://localhost:8888, 8888 car c'est le po
     * Après l'exécution de la commande `docker run -d dockersamples/static-site` le container dockersamples/static-site télécharger l'image dockersamples/static-site si elle n'existe pas en local et l'exécute en arrière plan, puis docker rend la main au terminal de l'host via la parmètre `-d`.
 
 
+# CI/CD
+**CI: Continute Integration**
+**CD: Continute Deploiement or Delevery**
+
 
 
 ---
