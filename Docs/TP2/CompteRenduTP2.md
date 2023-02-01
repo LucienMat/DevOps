@@ -9,11 +9,14 @@ La commande doit être lanceée depuis le dossier contenant `pom.xml` ou en pré
 **testcontainers** : présents dans le fichier `pom.xml` ce sont des containers issues de librairies java qui vont permttrent de lancer les tests et de lancer notre application en même temps.
 
 ---
-## Configuration du projet
+## 1. Configuration du projet
 Pour commencer on va créer un fichier `.github/workflows` à la base de notre projet. Il va nous servir à lancer les vérifications voulue avec une pipeline gérée par un fichier `main.yml` (et d'autres fichiers pour plusieurs pipelines plus tard). 
+![github repo](./screenshot/workflowsFolder.PNG)
 
 ---
-## Configuration du main.yml
+## 1. Configuration de main.yml
+[main.yml file](../../.github\workflows\main.yml)
+
 Pour indiquer quand lancer les  pipelines de tests, on configure sur quelle(s) branche(s) on va lancer les test en cas de push :
 ```
 push:
@@ -45,19 +48,27 @@ Pour finir on indique la commande à run pour lancer les tests :
 On retrouve `mvn clean verify` (cf. Notes), avec le chemin qui amène vers le fichier pom.xml qui contients les différents testcontainers
 
 ---
-## Ajout des variables secrets dans Github
+## 2. CD World
+On va à présent ajouter un pipeline qui va nous permettre de stocker nos images sur un site distant. On va utiliser `DockerHub` à qui on enverra nos images testées après chaque commit sur le `main`.\
+Pour ça on créé un second fichier dans le dossier workflows appelé `docker.yml`. Il nous servira à se connecter à Dockerhub et à envoyer nos images
+
+---
+## 2. Ajout des variables secrets dans Github
 On va ajouter dans les variables secrets de notre Github de quoi se connecter à Dockerhub pour pouvoir ensuite pousser nos images dessus.
 
 Sur Github : `Settings` -> [Dans l'onglet Security] `Secrets and variables` -> `Actions` -> `New Repository Secret`
 
-Ici, on va indiquer notre nom d'utilisateur Dockerhub, en nommant la variable `DOCKERHUB_USERNAME`, nom que l'on va réferencer dans nos configurations de workflow.\
-On fait la même chose pour le token d'indentification que l'on nomme `DOCKERHUB_TOKEN`\
+Ici, on va indiquer notre nom d'utilisateur Dockerhub, en nommant la variable `DOCKERHUB_USERNAME`, nom que l'on réferencera dans nos configurations de workflow.\
+On fait la même chose pour le token d'indentification que l'on nomme `DOCKERHUB_TOKEN`
+![Secrets variables](./screenshot/secretsVariables.PNG)
 Pour obtenir un token sur Dockerhub, se connecter puis : `Account Settings` -> `Security` -> `New Access Token`
 
-![Secrets variables](./secretsVariables.PNG)
+---
+## 2. Configuration de docker.yml
+[docker.yml file](../../.github\workflows\docker.yml)
 
 ---
-## Workflows
+### 1ère étape - Connexion
 Connexion vers DockerHub en utilisant les variables secrets :
 ```
 - name: Login to DockerHub
@@ -65,6 +76,8 @@ Connexion vers DockerHub en utilisant les variables secrets :
 ```
 Cette partie du code est à placer avant tous les push vers Dockerhub
 
+---
+### 2ème étape - Pushs
 On défini ensuite les push des différentes images après chaque commit :
 ```
  - name: Build image and push backend
@@ -77,9 +90,11 @@ On défini ensuite les push des différentes images après chaque commit :
         # build on feature branches, push only on main branch
         push: ${{ github.ref == 'refs/heads/main' }}
 ```
-On voit qu'on utilise bien les variables secrets `DOCKERHUB_USERNAME`, en indiquant leur nom sur Dockerhub (ici simple-api, postgres-database et httpd)\
+On voit qu'on utilise bien la variable secrète `DOCKERHUB_USERNAME`, on s'en sert pour référencer les images à envoyer en indiquant leur nom sur Dockerhub (ici simple-api, postgres-database et httpd)\
 On réécris cette partie en l'adaptant pour toutes les imaes que l'on veut vérifier et envoyer sur Dockerhub.
 
+---
+### 3ème étape- Condition de lancement
 **En plus :** On rajoute un `if` pour que le workflow se lance bien à la suite de celui fais avec le main.yml :
 ```
 jobs: 
@@ -89,19 +104,20 @@ jobs:
 ```
 Note : `need` ne marche que avec les pipelines qui se trouvent dans le même workflow. Si on cherche à lancer en fonction d'un autre workflow il faut utiliser `if`
 
+---
 On peut maintenant tester les workflows en faisant un commit :
-![Workflows working](./workflowsWorking.PNG)
+![Workflows working](./screenshot/workflowsWorking.PNG)
 Les workflows main.yml et docker.yml marchent, et se lancent l'un à la suite de l'autre comme prévu
 
 On va vérifier qu'ils ont bien été mis à jour sur DockerHub :
-![Dockerhub updated](./DockerhubUpdated.PNG)
+![Dockerhub updated](./screenshot/DockerhubUpdated.PNG)
 
 ---
-## Sonar quality gates
+## 3. Sonar quality gates
 Pour commencer il faut se créer un compte sur SonarCloud\
 Ensuite, on créé une nouvelle organisation et un nouveau projet dans Sonar. Au moment de la création du projet choisis la méthode d'analyse `GitHub Actions`. Sonar va nous demander d'ajouter une variable secrète dans Github, intitulée `SONAR_TOKEN` avec comme valeur le token indiqué par sonar :
-![Sonar Project setup](./sonarProjectSetup.PNG)
-![Sonar Token](./sonarToken.PNG)
+![Sonar Project setup](./screenshot/sonarProjectSetup.PNG)
+![Sonar Token](./screenshot/sonarToken.PNG)
 
 On modifie ensuite dans `main.yml` la commande executé avec Maven pour qu'elle soit reliée à Sonar :
 ```
@@ -110,12 +126,14 @@ mvn -B verify sonar:sonar -Dsonar.projectKey=devops-moelle-mathieu_devops -Dsona
 Il faut bien indiqué la `projectKey` et l'organisation, on trouve ces variables dans Sonar dans `information` après avoir sélectionner le projet
 
 Normalement après avoir commit, on pourra voir le résultat des quality gates sur Sonar :
-![quality gates](./qualityGates.PNG)
-Ici on voit que les quality gates ne sont pas validées, ce qui est normal pour notre projet.
+![quality gates](./screenshot/qualityGates.PNG)
+Ici on voit que les quality gates ne sont pas validées, ce qui est normal pour notre projet. Mais les vérifications ont bien eues lieu
 
 ---
 ## Split pipelines
-
+Le split de pipelines revient à séparer les différentes étapes à réaliser en plusieur pipelines, en plusieurs fichiers. Au lieu de tout regrouper dans un seul fichier on peut séparer en plusieurs, comme nous avec `main.yml` et `docker.yml`. Il faut tout de même faire attention à ce que les différentes pipelines soient lancées au bon moment si besoin (voir la condition `if` dans le `docker.yml`)
+![Les deux fichiers .yml](./screenshot/ymlFiles.PNG)
+Cela permet plus de flexibilité dans les étapes de tests, est plus facile à maintenir et à faire évoluer mais demande davantage de rigueur en ce qui concerne l'organisation des pipelines.
 
 ---
 ## Membres du groupe
