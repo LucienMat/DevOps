@@ -92,6 +92,23 @@ Les workflows main.yml et docker.yml marchent, et se lancent l'un à la suite de
 On va vérifier qu'ils ont bien été mis à jour sur DockerHub :
 ![Dockerhub updated](./DockerhubUpdated.PNG)
 
+## Sonar quality gates
+Pour commencer il faut se créer un compte sur SonarCloud\
+Ensuite, on créé une nouvelle organisation et un nouveau projet dans Sonar. Au moment de la création du projet choisis la méthode d'analyse `GitHub Actions`. Sonar va nous demander d'ajouter une variable secrète dans Github, intitulée `SONAR_TOKEN` avec comme valeur le token indiqué par sonar :
+![Sonar Project setup](./sonarProjectSetup.PNG)
+![Sonar Token](./sonarToken.PNG)
+
+On modifie ensuite dans `main.yml` la commande executé avec Maven pour qu'elle soit reliée à Sonar :
+```
+mvn -B verify sonar:sonar -Dsonar.projectKey=devops-moelle-mathieu_devops -Dsonar.organization=devops-moelle-mathieu -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}  --file ./tp2/simple-api/pom.xml
+```
+Il faut bien indiqué la `projectKey` et l'organisation, on trouve ces variables dans Sonar dans `information` après avoir sélectionner le projet
+
+Normalement après avoir commit, on pourra voir le résultat des quality gates sur Sonar :
+![quality gates](./qualityGates.PNG)
+Ici on voit que les quality gates ne sont pas validées, ce qui est normal pour notre projet.
+
+
 ---
 ## Membres du groupe
     - Lucien MATHIEU
