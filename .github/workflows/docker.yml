@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         # relative path to the place where source code with Dockerfile is located
-        context: ./tp/simple-api
+        context: ./tp2/simple-api
         # Note: tags has to be all lower-case
         tags:  ${{secrets.DOCKERHUB_USERNAME}}/simple-api
         # build on feature branches, push only on main branch
@@ -40,7 +40,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         # relative path to the place where source code with Dockerfile is located
-        context: ./tp/database
+        context: ./tp2/database
         # Note: tags has to be all lower-case
         tags:  ${{secrets.DOCKERHUB_USERNAME}}/postgres-database
         # build on feature branches, push only on main branch
@@ -51,7 +51,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         # relative path to the place where source code with Dockerfile is located
-        context: ./tp/httpd
+        context: ./tp2/httpd
         # Note: tags has to be all lower-case
         tags:  ${{secrets.DOCKERHUB_USERNAME}}/httpd
         # build on feature branches, push only on main branch

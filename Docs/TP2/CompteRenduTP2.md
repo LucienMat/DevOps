@@ -68,7 +68,7 @@ On défini ensuite les push des différentes images après chaque commit :
       uses: docker/build-push-action@v3
       with:
         # relative path to the place where source code with Dockerfile is located
-        context: ./tp/simple-api
+        context: ./tp2/simple-api
         # Note: tags has to be all lower-case
         tags:  ${{secrets.DOCKERHUB_USERNAME}}/simple-api
         # build on feature branches, push only on main branch
