@@ -43,8 +43,54 @@ On retrouve `mvn clean verify` (cf. Notes), avec le chemin qui amène vers le fi
 
 
 ## Ajout des secrets dans Github
+On va ajouter dans les variables secrets de notre Github de quoi se connecter à Dockerhub pour pouvoir ensuite pousser nos images dessus.
+
+Sur Github : `Settings` -> [Dans l'onglet Security] `Secrets and variables` -> `Actions` -> `New Repository Secret`
+
+Ici, on va indiquer notre nom d'utilisateur Dockerhub, en nommant la variable `DOCKERHUB_USERNAME`, nom que l'on va réferencer dans nos configurations de workflow.\
+On fait la même chose pour le token d'indentification que l'on nomme `DOCKERHUB_TOKEN`\
+Pour obtenir un token sur Dockerhub, se connecter puis : `Account Settings` -> `Security` -> `New Access Token`
+
+![Secrets variables](./secretsVariables.PNG)
 
 
+## Workflows
+Connexion vers DockerHub en utilisant les variables secrets :
+```
+- name: Login to DockerHub
+      run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
+```
+Cette partie du code est à placer avant tous les push vers Dockerhub
+
+On défini ensuite les push des différentes images après chaque commit :
+```
+ - name: Build image and push backend
+      uses: docker/build-push-action@v3
+      with:
+        # relative path to the place where source code with Dockerfile is located
+        context: ./tp/simple-api
+        # Note: tags has to be all lower-case
+        tags:  ${{secrets.DOCKERHUB_USERNAME}}/simple-api
+        # build on feature branches, push only on main branch
+        push: ${{ github.ref == 'refs/heads/main' }}
+```
+On voit qu'on utilise bien les variables secrets `DOCKERHUB_USERNAME`, en indiquant leur nom sur Dockerhub (ici simple-api, postgres-database et httpd)\
+On réécris cette partie en l'adaptant pour toutes les imaes que l'on veut vérifier et envoyer sur Dockerhub.
+
+**En plus :** On rajoute un `if` pour que le workflow se lance bien à la suite de celui fais avec le main.yml :
+```
+jobs: 
+ build-and-push-docker-image:
+  runs-on: ubuntu-22.04
+  if: ${{github.event.workflow_run.conclusion == 'success'}}
+```
+
+On peut maintenant tester les workflows en faisant un commit :
+![Workflows working](./workflowsWorking.PNG)
+Les workflows main.yml et docker.yml marchent, et se lancent l'un à la suite de l'autre comme prévu
+
+On va vérifier qu'ils ont bien été mis à jour sur DockerHub :
+![Dockerhub updated](./DockerhubUpdated.PNG)
 
 ---
 ## Membres du groupe
