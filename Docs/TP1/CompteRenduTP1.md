@@ -32,7 +32,7 @@ On va ensuite le lancer en le reliant au réseau où se trouve notre base de don
 ```
 docker run -p "8090:8080" --net=app-network --name=adminer -d adminer
 ```
-On se connecte ensuite à la base de donnée en passant par adminer à l'addresse http://localhost:8090
+On se connecte ensuite à la base de donnée en passant par adminer à l'addresse http://localhost:8090\
 ![Auth](./screenshot/authAdminer.PNG)\
 ![Connexion](./screenshot/connexionAdminer.PNG)\
 
@@ -46,7 +46,7 @@ COPY InsertData.sql /docker-entrypoint-initdb.d
 ```
 Il ne reste plus qu'à supprimer le container actuel, rebuild et relancer :\
 ![Container relancé](./screenshot/rebuildContainer.PNG)\
-On vérifie que la base de données est bien mise à jour :
+On vérifie que la base de données est bien mise à jour :\
 ![Tables remplies](./screenshot/tables.PNG)\
 ![Données](./screenshot/donn%C3%A9es.PNG)\
 On peut également visualiser les données en utilisant pgAdmin
@@ -84,18 +84,18 @@ On peut ensuite vérifier le bon fonctionnement avec l'addresse http://localhost
 
 **Main.java**
 
-![Build DockerFile](./screenshot/build_main.PNG)\
+![Build DockerFile](./screenshot/build_main.PNG)
 
-![Run container](./screenshot/run_main.PNG)\
+![Run container](./screenshot/run_main.PNG)
 
 
 **Backend simple api**
 
-![Build DockerFile](./screenshot/build_myapp-build.PNG)\
+![Build DockerFile](./screenshot/build_myapp-build.PNG)
 
-![Run container](./screenshot/run_myapp-build.PNG)\
+![Run container](./screenshot/run_myapp-build.PNG)
 
-![View](./screenshot/view_myapp-build.PNG)\
+![View](./screenshot/view_myapp-build.PNG)
 
 
 ***Question***
@@ -105,19 +105,19 @@ On peut ensuite vérifier le bon fonctionnement avec l'addresse http://localhost
 
 **Backend API**
 
-![View](./screenshot/run_student-main.PNG)\
+![View](./screenshot/run_student-main.PNG)
 
-![View](./screenshot/view_student-main.PNG)\
+![View](./screenshot/view_student-main.PNG)
 
 
 ## Publish des images
 
 On va publier nos 3 images pour les avoir à disposition sur Dockerhub.\
 On commence par se login à Dockerhub avec `docker login`. Ensuite on va ajouter une image et la publier en utilisant `docker tag` et `docker push` :
-![Connexion et push des images](./screenshot/publishImage%2BloginDockerHub.PNG)\
+![Connexion et push des images](./screenshot/publishImage%2BloginDockerHub.PNG)
 
 On repète l'opération pour les 2 autres images `simple-api` et `httpd`. On vérfie qu'ils sont bien accessibles sur Dockerhub :
-![Repo Dockerhub](./screenshot/repoDockerhub.PNG)\
+![Repo Dockerhub](./screenshot/repoDockerhub.PNG)
 
 ---
 **Tip** : En runnant le container avec -e pour indiquer les variables d'environnement (nom de la db, mdp ect...) on peut stocker ces variables de manière cryptées, pour ensuite les comparer avec celles reçues à leur tour cryptées.
