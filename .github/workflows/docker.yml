@@ -39,7 +39,7 @@ jobs:
         # relative path to the place where source code with Dockerfile is located
         context: ./TP2/database
         # Note: tags has to be all lower-case
-        tags:  ${{secrets.DOCKERHUB_USERNAME}}/TP2/database
+        tags:  ${{secrets.DOCKERHUB_USERNAME}}/tp2/database
 
 
     - name: Build image and push httpd
@@ -48,7 +48,7 @@ jobs:
         # relative path to the place where source code with Dockerfile is located
         context: ./TP2/httpd
         # Note: tags has to be all lower-case
-        tags:  ${{secrets.DOCKERHUB_USERNAME}}/TP2/httpd
+        tags:  ${{secrets.DOCKERHUB_USERNAME}}/tp2/httpd
 
     - name: Login to DockerHub
       run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
