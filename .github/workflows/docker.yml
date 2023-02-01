@@ -13,7 +13,7 @@ on:
 # define job to build and publish docker image
 jobs: 
  build-and-push-docker-image:
-  if: ${{github.event.workflow_run.connection == 'success'}}
+  if: ${{github.event.workflow_run.conclusion == 'success'}}
   ## needs: test-backend
   # run only when code is compiling and tests are passing
   runs-on: ubuntu-22.04
