@@ -110,6 +110,15 @@ On peut ensuite vérifier le bon fonctionnement avec l'addresse http://localhost
 ![View](./view_student-main.PNG)
 
 
+## Publish des images
+
+On va publier nos 3 images pour les avoir à disposition sur Dockerhub.\
+On commence par se login à Dockerhub avec `docker login`. Ensuite on va ajouter une image et la publier en utilisant `docker tag` et `docker push` :
+![Connexion et push des images](./publishImage%2BloginDockerHub.PNG)
+
+On repète l'opération pour les 2 autres images `simple-api` et `httpd`. On vérfie qu'ils sont bien accessibles sur Dockerhub :
+![Repo Dockerhub](./repoDockerhub.PNG)
+
 ---
 **Tip** : En runnant le container avec -e pour indiquer les variables d'environnement (nom de la db, mdp ect...) on peut stocker ces variables de manière cryptées, pour ensuite les comparer avec celles reçues à leur tour cryptées.
 

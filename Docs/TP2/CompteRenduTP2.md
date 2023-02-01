@@ -8,6 +8,8 @@ La commande soit être lancer depuis le dossier contenant `pom.xml` ou en préci
 
 **testcontainer** : présents dans le fichier `pom.xml` ce sont des containers issues de librairies java qui vont premttrent de lancer les tests et de lancer notre application en même temps.
 
+Pour les workflows, `need` ne marche que avec les pipelines qui se trouvent dans le même workflow. Si on cherche à lancer en fonction d'un autre workflow il faut utiliser `if`
+
 ## Configuration du main.yml
 Pour indiquer quand lancer les tests, on configure les variables push et pull_requests :
 ```
@@ -21,20 +23,22 @@ Ici nos tests seront lancés s'il y a un pull ou un push sur la branche "main"
 On set up le container responsable des test dans le backend, intitulé `test-backend`. Il faut indiquer la version de Java à utiliser, quel JDK, le nom de la distribution ect...
 ```
 - name: Set up JDK 17
-        uses: actions/setup-java@v2.5.0
+        uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: maven
+          #cache: maven
 ```
+*Attention bien mettre la v3 et commenté le cache*
 Pour avoir un exemple de configuration aller sur le projet Github, onglet `Actions`, et `New workflow`. On a un exemple de fichier main.yml configuré, avec la version de java, la distribution...
 
 Pour finir on indique la commande à run pour lancer les tests :
 ```
 #finally build your app with the latest command
       - name: Build and test with Maven
-        run:  mvn clean verify --file /simple-api/pom.xml
+        run:  mvn clean verify --file /./TP2/simple-api/pom.xml
 ```
+*Mettre le chemin vers le pom relatif au fichier main*
 On retrouve `mvn clean verify` (cf. Notes), avec le chemin qui amène vers le fichier pom.xml qui contients les différents testcontainers
 
 
