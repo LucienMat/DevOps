@@ -4,14 +4,17 @@
 **yaml file** : fichier qui décris les étapes à lancer au moment de l'éxecution de la pipeline. Par exemple des tests, des vérification de synthaxe...
 
 La commande `mvn clean verify` sert à nettoyer le projet avec clean afin de le rebuild et de le relancer proprement sans cache. Verify va build tous les modules de l'application et runner les tests pour s'assurer que les critères de qualité définis sont rempli (Tests unitaires et d'intégration). [Maven commands sheets](https://www.digitalocean.com/community/tutorials/maven-commands-options-cheat-sheet)\
-La commande soit être lancer depuis le dossier contenant `pom.xml` ou en précisant sa route avec `--file [path to pom.xml]`
+La commande doit être lanceée depuis le dossier contenant `pom.xml` ou en précisant sa route avec `--file [path to pom.xml]`
 
-**testcontainer** : présents dans le fichier `pom.xml` ce sont des containers issues de librairies java qui vont premttrent de lancer les tests et de lancer notre application en même temps.
+**testcontainers** : présents dans le fichier `pom.xml` ce sont des containers issues de librairies java qui vont permttrent de lancer les tests et de lancer notre application en même temps.
 
-Pour les workflows, `need` ne marche que avec les pipelines qui se trouvent dans le même workflow. Si on cherche à lancer en fonction d'un autre workflow il faut utiliser `if`
+---
+## Configuration du projet
+Pour commencer on va créer un fichier `.github/workflows` à la base de notre projet. Il va nous servir à lancer les vérifications voulue avec une pipeline gérée par un fichier `main.yml` (et d'autres fichiers pour plusieurs pipelines plus tard). 
 
+---
 ## Configuration du main.yml
-Pour indiquer quand lancer les tests, on configure les variables push et pull_requests :
+Pour indiquer quand lancer les  pipelines de tests, on configure sur quelle(s) branche(s) on va lancer les test en cas de push :
 ```
 push:
    branches: [ "main"]
@@ -41,8 +44,8 @@ Pour finir on indique la commande à run pour lancer les tests :
 *Mettre le chemin vers le pom relatif au fichier main*
 On retrouve `mvn clean verify` (cf. Notes), avec le chemin qui amène vers le fichier pom.xml qui contients les différents testcontainers
 
-
-## Ajout des secrets dans Github
+---
+## Ajout des variables secrets dans Github
 On va ajouter dans les variables secrets de notre Github de quoi se connecter à Dockerhub pour pouvoir ensuite pousser nos images dessus.
 
 Sur Github : `Settings` -> [Dans l'onglet Security] `Secrets and variables` -> `Actions` -> `New Repository Secret`
@@ -53,7 +56,7 @@ Pour obtenir un token sur Dockerhub, se connecter puis : `Account Settings` -> `
 
 ![Secrets variables](./secretsVariables.PNG)
 
-
+---
 ## Workflows
 Connexion vers DockerHub en utilisant les variables secrets :
 ```
@@ -84,6 +87,7 @@ jobs:
   runs-on: ubuntu-22.04
   if: ${{github.event.workflow_run.conclusion == 'success'}}
 ```
+Note : `need` ne marche que avec les pipelines qui se trouvent dans le même workflow. Si on cherche à lancer en fonction d'un autre workflow il faut utiliser `if`
 
 On peut maintenant tester les workflows en faisant un commit :
 ![Workflows working](./workflowsWorking.PNG)
@@ -92,6 +96,7 @@ Les workflows main.yml et docker.yml marchent, et se lancent l'un à la suite de
 On va vérifier qu'ils ont bien été mis à jour sur DockerHub :
 ![Dockerhub updated](./DockerhubUpdated.PNG)
 
+---
 ## Sonar quality gates
 Pour commencer il faut se créer un compte sur SonarCloud\
 Ensuite, on créé une nouvelle organisation et un nouveau projet dans Sonar. Au moment de la création du projet choisis la méthode d'analyse `GitHub Actions`. Sonar va nous demander d'ajouter une variable secrète dans Github, intitulée `SONAR_TOKEN` avec comme valeur le token indiqué par sonar :
@@ -107,6 +112,9 @@ Il faut bien indiqué la `projectKey` et l'organisation, on trouve ces variables
 Normalement après avoir commit, on pourra voir le résultat des quality gates sur Sonar :
 ![quality gates](./qualityGates.PNG)
 Ici on voit que les quality gates ne sont pas validées, ce qui est normal pour notre projet.
+
+---
+## Split pipelines
 
 
 ---
