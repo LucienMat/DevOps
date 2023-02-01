@@ -27,9 +27,9 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         # relative path to the place where source code with Dockerfile is located
-        context: ./TP2/simple-api
+        context: ./tp2/simple-api
         # Note: tags has to be all lower-case
-        tags:  ${{secrets.DOCKERHUB_USERNAME}}/TP2/simple-api
+        tags:  ${{secrets.DOCKERHUB_USERNAME}}/tp2/simple-api
         # build on feature branches, push only on main branch
         push: ${{ github.ref == 'refs/heads/main' }}
 
@@ -37,7 +37,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         # relative path to the place where source code with Dockerfile is located
-        context: ./TP2/database
+        context: ./tp2/database
         # Note: tags has to be all lower-case
         tags:  ${{secrets.DOCKERHUB_USERNAME}}/tp2/database
 
@@ -46,7 +46,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         # relative path to the place where source code with Dockerfile is located
-        context: ./TP2/httpd
+        context: ./tp2/httpd
         # Note: tags has to be all lower-case
         tags:  ${{secrets.DOCKERHUB_USERNAME}}/tp2/httpd
 
