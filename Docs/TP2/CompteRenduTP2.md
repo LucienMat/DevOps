@@ -11,7 +11,7 @@ La commande doit être lanceée depuis le dossier contenant `pom.xml` ou en pré
 ---
 ## 1. Configuration du projet
 Pour commencer on va créer un fichier `.github/workflows` à la base de notre projet. Il va nous servir à lancer les vérifications voulue avec une pipeline gérée par un fichier `main.yml` (et d'autres fichiers pour plusieurs pipelines plus tard). 
-![github repo](./screenshot/workflowsFolder.PNG)
+![github repo](./screenshot/workflowsFolder.PNG)\
 
 ---
 ## 1. Configuration de main.yml
@@ -60,7 +60,7 @@ Sur Github : `Settings` -> [Dans l'onglet Security] `Secrets and variables` -> `
 
 Ici, on va indiquer notre nom d'utilisateur Dockerhub, en nommant la variable `DOCKERHUB_USERNAME`, nom que l'on réferencera dans nos configurations de workflow.\
 On fait la même chose pour le token d'indentification que l'on nomme `DOCKERHUB_TOKEN`
-![Secrets variables](./screenshot/secretsVariables.PNG)
+![Secrets variables](./screenshot/secretsVariables.PNG)\
 Pour obtenir un token sur Dockerhub, se connecter puis : `Account Settings` -> `Security` -> `New Access Token`
 
 ---
@@ -106,18 +106,18 @@ Note : `need` ne marche que avec les pipelines qui se trouvent dans le même wor
 
 ---
 On peut maintenant tester les workflows en faisant un commit :
-![Workflows working](./screenshot/workflowsWorking.PNG)
+![Workflows working](./screenshot/workflowsWorking.PNG)\
 Les workflows main.yml et docker.yml marchent, et se lancent l'un à la suite de l'autre comme prévu
 
 On va vérifier qu'ils ont bien été mis à jour sur DockerHub :
-![Dockerhub updated](./screenshot/DockerhubUpdated.PNG)
+![Dockerhub updated](./screenshot/DockerhubUpdated.PNG)\
 
 ---
 ## 3. Sonar quality gates
 Pour commencer il faut se créer un compte sur SonarCloud\
 Ensuite, on créé une nouvelle organisation et un nouveau projet dans Sonar. Au moment de la création du projet choisis la méthode d'analyse `GitHub Actions`. Sonar va nous demander d'ajouter une variable secrète dans Github, intitulée `SONAR_TOKEN` avec comme valeur le token indiqué par sonar :
-![Sonar Project setup](./screenshot/sonarProjectSetup.PNG)
-![Sonar Token](./screenshot/sonarToken.PNG)
+![Sonar Project setup](./screenshot/sonarProjectSetup.PNG)\
+![Sonar Token](./screenshot/sonarToken.PNG)\
 
 On modifie ensuite dans `main.yml` la commande executé avec Maven pour qu'elle soit reliée à Sonar :
 ```
@@ -126,13 +126,13 @@ mvn -B verify sonar:sonar -Dsonar.projectKey=devops-moelle-mathieu_devops -Dsona
 Il faut bien indiqué la `projectKey` et l'organisation, on trouve ces variables dans Sonar dans `information` après avoir sélectionner le projet
 
 Normalement après avoir commit, on pourra voir le résultat des quality gates sur Sonar :
-![quality gates](./screenshot/qualityGates.PNG)
+![quality gates](./screenshot/qualityGates.PNG)\
 Ici on voit que les quality gates ne sont pas validées, ce qui est normal pour notre projet. Mais les vérifications ont bien eues lieu
 
 ---
 ## Split pipelines
 Le split de pipelines revient à séparer les différentes étapes à réaliser en plusieur pipelines, en plusieurs fichiers. Au lieu de tout regrouper dans un seul fichier on peut séparer en plusieurs, comme nous avec `main.yml` et `docker.yml`. Il faut tout de même faire attention à ce que les différentes pipelines soient lancées au bon moment si besoin (voir la condition `if` dans le `docker.yml`)
-![Les deux fichiers .yml](./screenshot/ymlFiles.PNG)
+![Les deux fichiers .yml](./screenshot/ymlFiles.PNG)\
 Cela permet plus de flexibilité dans les étapes de tests, est plus facile à maintenir et à faire évoluer mais demande davantage de rigueur en ce qui concerne l'organisation des pipelines.
 
 ---
