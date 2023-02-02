@@ -1,3 +1,8 @@
+
+## Membres du groupe
+    - Lucien MATHIEU
+    - Guth MOELLE
+    
 # TP 1 - Discover Docker
 
 [TP 1](http://school.pages.takima.io/devops-resources/ch1-discover-docker-tp/)
@@ -124,7 +129,3 @@ On repète l'opération pour les 2 autres images `simple-api` et `httpd`. On vé
 
 
 ---
-
-## Membres du groupe
-    - Lucien MATHIEU
-    - Guth MOELLE
