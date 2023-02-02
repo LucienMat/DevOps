@@ -3,7 +3,7 @@
 
 - name: Run simple-api
   docker_container:
-    name: simple-api
+    name: backend
     state: started
     image: lucienmat/simple-api:latest
     #pull: yes
