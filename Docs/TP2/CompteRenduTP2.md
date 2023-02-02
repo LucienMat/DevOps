@@ -1,3 +1,7 @@
+## Membres du groupe
+    - Lucien MATHIEU
+    - Guth MOELLE
+    
 # TP 2 - Discover Githun Action
 
 ## Notes
@@ -136,6 +140,3 @@ Le split de pipelines revient à séparer les différentes étapes à réaliser 
 Cela permet plus de flexibilité dans les étapes de tests, est plus facile à maintenir et à faire évoluer mais demande davantage de rigueur en ce qui concerne l'organisation des pipelines.
 
 ---
-## Membres du groupe
-    - Lucien MATHIEU
-    - Guth MOELLE
