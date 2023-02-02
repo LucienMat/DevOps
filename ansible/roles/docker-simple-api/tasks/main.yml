@@ -6,7 +6,7 @@
     name: simple-api
     state: started
     image: lucienmat/simple-api:latest
-    pull: yes
+    #pull: yes
     networks: 
      - name: app-network
     ports:
