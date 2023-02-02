@@ -1,8 +1,9 @@
+    
+# TP 2 - Discover Githun Action
+
 ## Membres du groupe
     - Lucien MATHIEU
     - Guth MOELLE
-    
-# TP 2 - Discover Githun Action
 
 ## Notes
 **yaml file** : fichier qui décris les étapes à lancer au moment de l'éxecution de la pipeline. Par exemple des tests, des vérification de synthaxe...

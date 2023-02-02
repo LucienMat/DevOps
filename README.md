@@ -5,3 +5,7 @@
 [Compte rendu du TP2](./Docs/TP2/CompteRenduTP2.md)
 
 #### This project (devops-resources) is now us.
+
+## Membres du groupe
+    - Lucien MATHIEU
+    - Guth MOELLE

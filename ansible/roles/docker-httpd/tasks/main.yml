@@ -1,0 +1,12 @@
+---
+# tasks file for roles/docker-httpd
+
+- name: Run HTTPD
+  docker_container:
+    name: httpd
+    state: started
+    image: lucienmat/httpd:latest
+    ports:
+     - 80:80
+    networks: 
+     - name: app-network
