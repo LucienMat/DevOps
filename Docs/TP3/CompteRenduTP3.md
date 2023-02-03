@@ -6,8 +6,8 @@
     - Guth MOELLE
 
 ## Install Ansible
-Pour commencer il faut installer Ansible, sous Windows il faudra passer par un Sous-système Linux.\
-Nous avons utilisé un sous-styème Ubuntu. Une fois wsl (`wsl --install`) et Ubuntu installés, on va venir se placer dans notre projet avec : `cd /mnt/path/to/project` le mnt sert à relié le sous système au fichiers Windows\
+Pour commencer il faut installer Ansible, sous Windows il faudra passer par un Sous-système Linux (WSL).\
+Nous avons utilisé un sous-styème Ubuntu. Une fois wsl (`wsl --install`) et Ubuntu installés, on va venir se placer dans notre projet avec : `cd /mnt/path/to/project` le mnt sert à relier le sous système Linux au fichiers Windows\
 ![cd ubtuntu](./screenshot/cdMnt.PNG)
 On voit avec `ansible --version` que Ansible n'est pas encore installé. Pour l'installer `sudo apt install ansible` (si le package n'est pas reconnu, bien mettre à jour apt avec `sudo apt update` et `sudo apt upgrade`).\
 On peut vérifier que Ansible est bien installé :
@@ -18,7 +18,7 @@ On peut maintenant commencer le TP
 ## Inventories
 Créer un nouveau dossier ansible/inventories qui va contenir le setup d'Ansible et la clé privée.**
 ![ansible folder](./screenshot/ansibleFolder.PNG)
-Le fichier setup.yml va servir à se connecter à notre compte github. 
+Le fichier setup.yml va servir à se connecter à la machine virtuelle (VM) avec comme données d'authentification, la clé ssh et le nom de l'host. 
 ```
 all:
  vars:
@@ -29,7 +29,7 @@ all:
      hosts: lucien.mathieu.takima.cloud
 ```
 Le chemin vers la clé ssh est bien à mettre en fonction du sous-système Ubuntu, donc en rajoutant `/mnt/` au début.\
-Le host sera la lien par lequel on pourra se connecter pour vérifier le fonctionnement d'Ansible.
+Le host sera le lien par lequel on pourra se connecter pour vérifier le fonctionnement d'Ansible.
 
 On test la connexion avec `ansible all -i inventories/setup.yml -m ping` :
 ![Connexion Ansible](./screenshot/firstConnexion.PNG)
