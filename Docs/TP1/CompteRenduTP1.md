@@ -97,21 +97,12 @@ On peut ensuite vérifier le bon fonctionnement avec l'addresse http://localhost
 ---
 
 
-**simple-api database**
-
-![Build DockerFile](./screenshot/build_myapp-build.PNG)
-
-![Run container](./screenshot/run_myapp-build.PNG)
-
-![View](./screenshot/view_myapp-build.PNG)
-
-
 ***Question***
 
 1-2 La construction en plusieurs étages va nous permettre de séparer la partie importation des dépendances du fichier pom, la génération du Jar et la partie exécution du Jar. L'étape Build du fichier DockerFile va impotée les dépendances et générée le Jar du projet et l'étape Run va allée chercher tous les fichiers .jar dans le répertoireCourant/target et les exécutés.
 
 
-**Backend API**
+**Backend simple-api database**
 
 ![View](./screenshot/run_student-main.PNG)
 
