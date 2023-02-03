@@ -73,7 +73,16 @@ local     volume-postgres
 On peut retrouver notre volume avec le chemin : `\\wsl$\docker-desktop-data\data\docker\volumes\volume-postgres`
 
 ---
-## Spring Web
+## Backend API
+
+**Basics**
+
+![Build DockerFile](./screenshot/build_main.PNG)
+
+![Run container](./screenshot/run_main.PNG)
+
+**Backend simple api (Spring Web)** 
+
 Récupération du Spring Initializr, et ajout du fichier `GreetingController.java` dans le projet Spring : \
 ![ARboresence spring](./screenshot/Arborescence.PNG)\
 Il faut ensuite créer un nouveau Dockerfile situé dans le projet Spring qui va permettre de configurer et de build l'app java 
@@ -86,16 +95,9 @@ On peut ensuite vérifier le bon fonctionnement avec l'addresse http://localhost
 ![Hello world](./screenshot/helloWorld.PNG)\
 
 ---
-## Backend API
-
-**Main.java**
-
-![Build DockerFile](./screenshot/build_main.PNG)
-
-![Run container](./screenshot/run_main.PNG)
 
 
-**Backend simple api**
+**simple-api database**
 
 ![Build DockerFile](./screenshot/build_myapp-build.PNG)
 
@@ -106,7 +108,7 @@ On peut ensuite vérifier le bon fonctionnement avec l'addresse http://localhost
 
 ***Question***
 
-1-2 La construction en plusieurs étages va nous permettre de séparer la partie import des dépendances du fichier pom, la génération du Jar et la partie exécution du Jar. L'étape Build du fichier DockerFile va impoter des dépendances et générée le Jar du projet et l'étape Run va allé chercher tous les fichiers Jar dans le répertoireCourant/target et exécuteé ce Jar.
+1-2 La construction en plusieurs étages va nous permettre de séparer la partie importation des dépendances du fichier pom, la génération du Jar et la partie exécution du Jar. L'étape Build du fichier DockerFile va impotée les dépendances et générée le Jar du projet et l'étape Run va allée chercher tous les fichiers .jar dans le répertoireCourant/target et les exécutés.
 
 
 **Backend API**
