@@ -36,7 +36,7 @@ On test la connexion avec `ansible all -i inventories/setup.yml -m ping` :
 
 
 ## Playbook
-Créer un fichier de configuration de playbook**. Le fichier playbook.yml va servir lancer séquentiellement les rôles définis dans ce dernier via le champ **roles**. 
+Créer un fichier de configuration de playbook**. Le fichier playbook.yml va permettre de lancer séquentiellement les rôles définis dans ce dernier via le champ **roles**. 
 ![ansible folder](./screenshot/playbook_conf.PNG)
 
 **Création des roles**
