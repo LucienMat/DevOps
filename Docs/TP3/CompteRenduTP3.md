@@ -43,7 +43,7 @@ Créer un fichier de configuration de playbook**. Le fichier playbook.yml va ser
 ![ansible folder](./screenshot/creationRoles.PNG)
 
 **Voir les roles créés**
-![ansible folder](./screenshot/roles.PNG)
+![ansible folder](./screenshot/Roles.PNG)
 
 
 **Lancer playbook**
