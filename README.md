@@ -4,6 +4,8 @@
 
 [Compte rendu du TP2](./Docs/TP2/CompteRenduTP2.md)
 
+[Compte rendu du TP3](./Docs/TP3/CompteRenduTP3.md)
+
 #### This project (devops-resources) is now us.
 
 ## Membres du groupe
