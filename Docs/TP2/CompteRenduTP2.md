@@ -15,7 +15,7 @@ La commande doit être lanceée depuis le dossier contenant `pom.xml` ou en pré
 
 ---
 ## 1. Configuration du projet
-Pour commencer on va créer un fichier `.github/workflows` à la base de notre projet. Il va nous servir à lancer les vérifications voulue avec une pipeline gérée par un fichier `main.yml` (et d'autres fichiers pour plusieurs pipelines plus tard).\
+Pour commencer on va créer un fichier `.github/workflows` à la racine de notre projet. Il va nous servir à lancer les vérifications (tests) implémentés avec une pipeline gérée par un fichier `main.yml` (et d'autres fichiers pour plusieurs pipelines plus tard).\
 ![github repo](./screenshot/workflowsFolder.PNG)
 
 ---
