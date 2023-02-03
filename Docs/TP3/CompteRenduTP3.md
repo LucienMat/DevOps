@@ -8,16 +8,16 @@
 ## Install Ansible
 Pour commencer il faut installer Ansible, sous Windows il faudra passer par un Sous-système Linux.\
 Nous avons utilisé un sous-styème Ubuntu. Une fois wsl (`wsl --install`) et Ubuntu installés, on va venir se placer dans notre projet avec : `cd /mnt/path/to/project` le mnt sert à relié le sous système au fichiers Windows\
-![cd ubtuntu](./cdMnt.PNG)
+![cd ubtuntu](./screenshot/cdMnt.PNG)
 On voit avec `ansible --version` que Ansible n'est pas encore installé. Pour l'installer `sudo apt install ansible` (si le package n'est pas reconnu, bien mettre à jour apt avec `sudo apt update` et `sudo apt upgrade`).\
 On peut vérifier que Ansible est bien installé :
-![ansible isntallé](./ansibleVersion.PNG)
+![ansible isntallé](./screenshot/ansibleVersion.PNG)
 
 On peut maintenant commencer le TP
 
 ## Inventories
 Créer un nouveau dossier ansible/inventories qui va contenir le setup d'Ansible et la clé privée.**
-![ansible folder](./ansibleFolder.PNG)
+![ansible folder](./screenshot/ansibleFolder.PNG)
 Le fichier setup.yml va servir à se connecter à notre compte github. 
 ```
 all:
@@ -32,4 +32,4 @@ Le chemin vers la clé ssh est bien à mettre en fonction du sous-système Ubunt
 Le host sera la lien par lequel on pourra se connecter pour vérifier le fonctionnement d'Ansible.
 
 On test la connexion avec `ansible all -i inventories/setup.yml -m ping` :
-![Connexion Ansible](./firstConnexion.PNG)
+![Connexion Ansible](./screenshot/firstConnexion.PNG)
