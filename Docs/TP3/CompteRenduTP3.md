@@ -43,6 +43,11 @@ Créer un fichier de configuration de playbook**. Le fichier playbook.yml va per
 ![ansible folder](./screenshot/creationRoles.PNG)
 
 **Voir les roles créés**
+***Le role docker: Contient les tâches qui définissent les librairies à installées dans la VM***
+***Le role docker-httpd: Contient une tâche qui défini le container et l'image docker httpd à installer***
+***Le role docker-network: Contient une tâche qui défini le réseau docker qui doit être créer***
+***Le role docker-postgres: Contient une tâche qui défini le container et l'image docker postgres à installer***
+***Le role docker-simple-api: Contient une tâche qui défini le container et l'image docker du backend simple-api à installer***
 ![ansible folder](./screenshot/Roles.PNG)
 
 
