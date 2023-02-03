@@ -39,10 +39,10 @@ On test la connexion avec `ansible all -i inventories/setup.yml -m ping` :
 Créer un fichier de configuration de playbook**. Le fichier playbook.yml va permettre de lancer séquentiellement les rôles définis dans ce dernier via le champ **roles**. 
 ![ansible folder](./screenshot/playbook_conf.PNG)
 
-**Création des roles**
+#### Création des roles
 ![ansible folder](./screenshot/creationRoles.PNG)
 
-**Voir les roles créés**
+#### Voir les roles créés
     - Le role docker: Contient les tâches qui définissent les librairies à installées dans la VM
     - Le role docker-httpd: Contient une tâche qui défini le container et l'image docker httpd à installer
     - Le role docker-network: Contient une tâche qui défini le réseau docker qui doit être créer
@@ -51,7 +51,7 @@ Créer un fichier de configuration de playbook**. Le fichier playbook.yml va per
 ![ansible folder](./screenshot/Roles.PNG)
 
 
-**Lancer playbook**
+#### Lancer playbook
 ![ansible folder](./screenshot/lancerplaybook.PNG)
 
 
