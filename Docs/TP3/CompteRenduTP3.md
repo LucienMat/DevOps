@@ -33,3 +33,20 @@ Le host sera le lien par lequel on pourra se connecter pour vérifier le fonctio
 
 On test la connexion avec `ansible all -i inventories/setup.yml -m ping` :
 ![Connexion Ansible](./screenshot/firstConnexion.PNG)
+
+
+## Playbook
+Créer un fichier de configuration de playbook**. Le fichier playbook.yml va servir lancer séquentiellement les rôles définis dans ce dernier via le champ **roles**. 
+![ansible folder](./screenshot/playbook_conf.PNG)
+
+**Création des roles**
+![ansible folder](./screenshot/creationRoles.PNG)
+
+**Voir les roles créés**
+![ansible folder](./screenshot/roles.PNG)
+
+
+**Lancer playbook**
+![ansible folder](./screenshot/lancerplaybook.PNG)
+
+
